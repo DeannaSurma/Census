@@ -1,0 +1,2 @@
+serviceClass: com.cs4302.census.client.service.InputService
+path: 6AABC2BEBF7F35F8CB55C962F5F15694.gwt.rpc

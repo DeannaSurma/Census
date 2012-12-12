@@ -1,39 +1,36 @@
 package com.cs4302.census.server.service.impl;
 
+import com.cs4302.census.client.service.OutputService;
+import com.cs4302.census.server.provider.OutputProvider;
+import com.cs4302.census.shared.profiles.CountyProfile;
+import com.cs4302.census.shared.profiles.PlaceProfile;
+import com.cs4302.census.shared.profiles.StateProfile;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import com.google.inject.Inject;
-import com.cs4302.census.server.provider.OutputProvider;
-import com.cs4302.census.server.service.OutputService;
 
 public class OutputServiceImpl extends RemoteServiceServlet implements OutputService {
 
   private static final long serialVersionUID = 1L;
-  private final OutputProvider outportProvider;
+  private final OutputProvider outputProvider;
   
   @Inject
   OutputServiceImpl(OutputProvider outportProvider) {
-    this.outportProvider = outportProvider;
+    this.outputProvider = outportProvider;
   }
 
   @Override
-  public void autoFill(long stateID, String inputString) {
-    outportProvider.autoFill(stateID, inputString);
-    
+  public CountyProfile getCountyProfile(Long stateFP, Long countyFP) {
+    return outputProvider.getCountyProfile(stateFP, countyFP);
   }
 
   @Override
-  public void getCountyList(Long stateID) {
-    outportProvider.getCountyList(stateID);
+  public StateProfile getStateProfile(Long stateFP) {
+	return outputProvider.getStateProfile(stateFP);
   }
 
   @Override
-  public void getPlaceList(Long countyID) {
-    outportProvider.getPlaceList(countyID);
-  }
-
-  @Override
-  public void getPlaceProfile(Long placeID) {
-    outportProvider.getPlaceProfile(placeID);
+  public PlaceProfile getPlaceProfile(Long stateFP, Long placeFP) {
+    return outputProvider.getPlaceProfile(stateFP, placeFP);
   }
 
 }

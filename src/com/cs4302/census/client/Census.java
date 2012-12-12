@@ -1,22 +1,13 @@
 package com.cs4302.census.client;
 
-import com.cs4302.census.server.service.InputService;
-import com.cs4302.census.server.service.InputServiceAsync;
+import com.cs4302.census.client.service.InputService;
+import com.cs4302.census.client.service.InputServiceAsync;
+import com.cs4302.census.client.service.OutputService;
+import com.cs4302.census.client.service.OutputServiceAsync;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.event.dom.client.KeyCodes;
-import com.google.gwt.event.dom.client.KeyUpEvent;
-import com.google.gwt.event.dom.client.KeyUpHandler;
-import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
-import com.google.gwt.user.client.ui.DialogBox;
-import com.google.gwt.user.client.ui.HTML;
-import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.TextBox;
-import com.google.gwt.user.client.ui.VerticalPanel;
 
 /**
  * Entry point classes define <code>onModuleLoad()</code>.
@@ -33,13 +24,16 @@ public class Census implements EntryPoint {
   /**
    * Create a remote service proxy to talk to the server-side Greeting service.
    */
-  private final InputServiceAsync placeService = GWT.create(InputService.class);
+  private final InputServiceAsync inputService = GWT.create(InputService.class);
+  private final OutputServiceAsync outputService = GWT.create(OutputService.class);
 
   /**
    * This is the entry point method.
    */
   public void onModuleLoad() {
-  
+	  final Button sendButton = new Button("Send");
+      final TextBox nameField = new TextBox();
+      nameField.setText("GWT User");
   
   }
 }

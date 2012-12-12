@@ -2,9 +2,8 @@ package com.cs4302.census.server.service.impl;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import com.google.inject.Inject;
+import com.cs4302.census.client.service.InputService;
 import com.cs4302.census.server.provider.InputProvider;
-import com.cs4302.census.server.service.InputService;
-import com.cs4302.census.shared.CensusYear;
 
 public class InputServiceImpl extends RemoteServiceServlet implements InputService {
 
@@ -16,19 +15,12 @@ public class InputServiceImpl extends RemoteServiceServlet implements InputServi
     this.importProvider = importProvider;
   }
   
-  // add state first
-  public void insertState(CensusYear year, long stateID, String stateName, int population){ 
-    importProvider.addState(year, stateID, stateName, population);
-  }
-  
-  // add county second
-  public void insertCounty(long stateID, long countyID, String countyName, CensusYear year, int population){ 
-    importProvider.addCounty(stateID, countyID, countyName, year, population);
-  }
-  
-  // add place last
-  public void insertPlace(CensusYear year, long stateID, long countyID, long placeID, String placeName, int population){ 
-    importProvider.addPlace(year, stateID, countyID, placeID, placeName, population);
+  public void insertPlace(long stateFP,  String stateName,  int state70,  int state80,  int state90,  int state00,  int state10,
+		  long countyFP, String countyName, int county70, int county80, int county90, int county00, int county10,
+		  long placeFP,  String placeName,  int place70,  int place80,  int place90,  int place00,  int place10){
+	  importProvider.addPlace(stateFP, stateName, state70, state80, state90, state00, state10, 
+			  countyFP, countyName, county70, county80, county90, county00, county10, 
+			  placeFP, placeName, place70, place80, place90, place00, place10);
   }
   
 }

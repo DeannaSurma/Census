@@ -1,6 +1,10 @@
 package com.cs4302.census.server.DAO;
 
-import com.cs4302.census.shared.CensusYear;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.cs4302.census.shared.EntityInfo;
+import com.cs4302.census.shared.Tuple;
 import com.cs4302.census.shared.entities.State;
 import com.googlecode.objectify.Objectify;
 import com.googlecode.objectify.ObjectifyService;
@@ -14,34 +18,28 @@ public class StateDAO {
     ofy = ObjectifyService.begin();
   }
   
-  public State getState(Long stateID){
-    return ofy.get(State.class, stateID);
+  public State getState(Long stateFP){
+    return ofy.get(State.class, stateFP);
   }
-  
-  public State addState(CensusYear year, long stateID, String stateName, int population){ 
-    State state = getState(stateID);
+
+  public State addState(Long stateFP, Long countyFP, EntityInfo stateInfo){ 
+	State state = getState(stateFP);
     if (state == null){
-      state = new State(year, stateID, stateName, population);
+      state = new State(stateFP, stateInfo);
     }
-    else{
-      state.addPopulation(population, year);
-    }
+    state.addCountyFP(countyFP);
     ofy.put(state);
     return state;
   }
   
-  public State addCountyToState(long stateID, long countyID){
-    State state = getState(stateID);
-    state.addCountyID(countyID);
-    ofy.put(state);
-    return state;
-  }
-  
-  public State addPlaceToState(long stateID, long placeID, String countyName, String placeName){
-    State state = getState(stateID);
-    state.addPlace(placeID, placeName, countyName);
-    ofy.put(state);
-    return state;
-  }
+  public List<Tuple> getCountyList(Long stateFP){
+	    State state = this.getState(stateFP);
+	    List<String> countyNames = state.getCountyNames();
+	    List<Tuple> countyTuples = new ArrayList<Tuple>();
+	    for(String countyData : countyNames ){
+	    	countyTuples.add(new Tuple(countyData));
+	    }
+	    return countyTuples;
+	    }
   
 }
