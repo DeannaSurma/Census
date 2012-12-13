@@ -20,7 +20,14 @@ public class CountyDAO {
   
   public County getCounty(Long stateFP, Long countyFP){
 	String countyID = stateFP.toString().concat(countyFP.toString());
-    return ofy.get(County.class, countyID);
+    County county;
+    try{
+    	county = ofy.get(County.class, countyID);
+    }
+    catch(Exception e){
+    	county = null;
+    }
+    return county;
   }
 
   public County addCounty(Long stateFP, Long countyFP, Long placeFP, EntityInfo countyInfo){ 

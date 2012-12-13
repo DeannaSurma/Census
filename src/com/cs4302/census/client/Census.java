@@ -24,7 +24,6 @@ public class Census implements EntryPoint {
    */
   private final InputServiceAsync inputService = GWT.create(InputService.class);
   private final OutputServiceAsync outputService = GWT.create(OutputService.class);
-  private final GreetingServiceAsync greetingService = GWT.create(GreetingService.class);
 
   /**
    * This is the entry point method.
@@ -41,17 +40,6 @@ public class Census implements EntryPoint {
 		  
 	  }
 	  else{
-		  greetingService.greetServer("hi",
-					new AsyncCallback<String>() {
-						public void onFailure(Throwable caught) {
-							// Show the RPC error message to the user
-							System.out.println("FAIL");
-						}
-
-						public void onSuccess(String result) {
-							System.out.println("Success");
-						}
-					});
 		  
 		  inputService.insertPlace(1l,"HI",2, 3,4,5,6, 1l,"HI",2, 3,4,5,6, 1l,"HI",2, 3,4,5,6, new AsyncCallback<Void>() {
 			   @Override  

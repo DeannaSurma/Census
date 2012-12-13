@@ -11,7 +11,6 @@ import com.cs4302.census.shared.entities.Place;
 import com.cs4302.census.shared.profiles.CountyProfile;
 import com.cs4302.census.shared.profiles.PlaceProfile;
 import com.cs4302.census.shared.profiles.StateProfile;
-import com.google.inject.Inject;
 
 public class OutputProvider {
   
@@ -19,11 +18,10 @@ public class OutputProvider {
   private final CountyDAO countyDAO;
   private final PlaceDAO placeDAO;
   
-  @Inject
-  OutputProvider(StateDAO stateDAO, CountyDAO countyDAO, PlaceDAO placeDAO) {
-    this.stateDAO = stateDAO;
-    this.countyDAO = countyDAO;
-    this.placeDAO = placeDAO;
+  public OutputProvider() {
+	  this.stateDAO = new StateDAO();
+	  this.countyDAO = new CountyDAO();
+	  this.placeDAO = new PlaceDAO();
   }
   
   public StateProfile getStateProfile(Long stateFP){

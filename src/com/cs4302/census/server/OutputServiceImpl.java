@@ -9,18 +9,15 @@ import com.cs4302.census.shared.profiles.CountyProfile;
 import com.cs4302.census.shared.profiles.PlaceProfile;
 import com.cs4302.census.shared.profiles.StateProfile;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
-import com.google.inject.Inject;
 
 public class OutputServiceImpl extends RemoteServiceServlet implements OutputService {
 
   private static final long serialVersionUID = 1L;
   private final OutputProvider outputProvider;
   
-  @Inject
-  OutputServiceImpl(OutputProvider outportProvider) {
-    this.outputProvider = outportProvider;
+  public OutputServiceImpl() {
+    this.outputProvider = new OutputProvider();
   }
-
   @Override
   public CountyProfile getCountyProfile(Long stateFP, Long countyFP) {
     return outputProvider.getCountyProfile(stateFP, countyFP);

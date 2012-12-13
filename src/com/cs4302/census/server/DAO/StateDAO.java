@@ -19,7 +19,14 @@ public class StateDAO {
   }
   
   public State getState(Long stateFP){
-    return ofy.get(State.class, stateFP);
+    State state;
+    try{
+    	state = ofy.get(State.class, stateFP);
+    }
+    catch(Exception e){
+    	state = null;
+    }
+    return state;
   }
 
   public State addState(Long stateFP, Long countyFP, EntityInfo stateInfo){ 

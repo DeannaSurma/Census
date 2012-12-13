@@ -4,7 +4,6 @@ import com.cs4302.census.server.DAO.CountyDAO;
 import com.cs4302.census.server.DAO.PlaceDAO;
 import com.cs4302.census.server.DAO.StateDAO;
 import com.cs4302.census.shared.EntityInfo;
-import com.google.inject.Inject;
 
 public class InputProvider {
   
@@ -12,11 +11,10 @@ public class InputProvider {
   private final CountyDAO countyDAO;
   private final PlaceDAO placeDAO;
   
-  @Inject
-  InputProvider(StateDAO stateDAO, CountyDAO countyDAO, PlaceDAO placeDAO) {
-    this.stateDAO = stateDAO;
-    this.countyDAO = countyDAO;
-    this.placeDAO = placeDAO;
+  public InputProvider() {
+	  this.stateDAO = new StateDAO();
+	  this.countyDAO = new CountyDAO();
+	  this.placeDAO = new PlaceDAO();
   }
 
  public void addPlace(long stateFP,  String stateName,  int state70,  int state80,  int state90,  int state00,  int state10,
