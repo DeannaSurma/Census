@@ -36,6 +36,7 @@ public class Census implements EntryPoint {
 	  // state = true -> Mitch - displaying info
 	  // state = false -> Ken - uploading info
 	  if (state){
+		  // use outputService
 		  final Button sendButton = new Button("Send");
 	      final TextBox nameField = new TextBox();
 	      nameField.setText("GWT User");
@@ -43,7 +44,8 @@ public class Census implements EntryPoint {
 	  }
 	  else{
 		  
-		  // read from file, iterate, use outputService
+		  // read from file, iterate, use inputService
+		  // inputService.insertPlace(stateID, stateName, state70, state80, state90, state00, state10, countyID, countyName, county70, county80, county90, county00, county10, placeID, placeName, place70, place80, place90, place00, place10, new Async...)
 	  }
 	  
 	  
