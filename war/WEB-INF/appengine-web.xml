@@ -3,8 +3,10 @@
   <application></application>
   <version>1</version>
 
+  <!--
+    Allows App Engine to send multiple requests to one instance in parallel:
+  -->
   <threadsafe>true</threadsafe>
-
 
   <!-- Configure serving/caching of GWT files -->
   <static-files>
@@ -21,6 +23,9 @@
   <system-properties>
     <property name="java.util.logging.config.file" value="WEB-INF/logging.properties"/>
   </system-properties>
+
+<sessions-enabled>true</sessions-enabled>
+<async-session-persistence enabled="true" />
 
   <!--
     HTTP Sessions are disabled by default. To enable HTTP sessions specify:

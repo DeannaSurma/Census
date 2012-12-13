@@ -1,4 +1,2 @@
 # Module census
 # RPC service class, partial path of RPC policy file
-com.cs4302.census.client.service.OutputService, A870C1743049470FD8C971EF3CA8E236.gwt.rpc
-com.cs4302.census.client.service.InputService, 6AABC2BEBF7F35F8CB55C962F5F15694.gwt.rpc
