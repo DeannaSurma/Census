@@ -1,7 +1,10 @@
 package com.cs4302.census.server.service.impl;
 
+import java.util.List;
+
 import com.cs4302.census.client.service.OutputService;
 import com.cs4302.census.server.provider.OutputProvider;
+import com.cs4302.census.shared.Tuple;
 import com.cs4302.census.shared.profiles.CountyProfile;
 import com.cs4302.census.shared.profiles.PlaceProfile;
 import com.cs4302.census.shared.profiles.StateProfile;
@@ -31,6 +34,16 @@ public class OutputServiceImpl extends RemoteServiceServlet implements OutputSer
   @Override
   public PlaceProfile getPlaceProfile(Long stateFP, Long placeFP) {
     return outputProvider.getPlaceProfile(stateFP, placeFP);
+  }
+  
+  @Override
+  public List<Tuple> getCountyList(Long stateFP){
+	  return outputProvider.getCountyList(stateFP);
+  }
+  
+  @Override
+  public List<Tuple> getPlaceList(Long stateFP, Long countyFP){
+	  return outputProvider.getPlaceList(stateFP, countyFP);
   }
 
 }

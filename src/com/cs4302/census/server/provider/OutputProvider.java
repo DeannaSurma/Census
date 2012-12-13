@@ -46,5 +46,13 @@ public class OutputProvider {
 	  EntityInfo stateInfo = stateDAO.getState(stateFP).getStateInfo();
 	  return new PlaceProfile(stateInfo, countyInfo, placeInfo);
  }
+  
+  public List<Tuple> getCountyList(Long stateFP){
+	  return stateDAO.getCountyList(stateFP);
+  }
+  
+  public List<Tuple> getPlaceList(Long stateFP, Long countyFP){
+	  return countyDAO.getPlaceList(stateFP, countyFP);
+  }
 
 }

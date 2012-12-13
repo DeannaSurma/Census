@@ -31,9 +31,23 @@ public class Census implements EntryPoint {
    * This is the entry point method.
    */
   public void onModuleLoad() {
-	  final Button sendButton = new Button("Send");
-      final TextBox nameField = new TextBox();
-      nameField.setText("GWT User");
+	  boolean state = true;
+	  
+	  // state = true -> Mitch - displaying info
+	  // state = false -> Ken - uploading info
+	  if (state){
+		  final Button sendButton = new Button("Send");
+	      final TextBox nameField = new TextBox();
+	      nameField.setText("GWT User");
+		  
+	  }
+	  else{
+		  
+		  // read from file, iterate, use outputService
+	  }
+	  
+	  
+
   
   }
 }
