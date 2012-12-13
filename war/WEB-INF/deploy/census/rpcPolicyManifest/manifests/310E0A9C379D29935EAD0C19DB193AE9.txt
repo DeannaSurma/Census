@@ -1,0 +1,2 @@
+serviceClass: com.cs4302.census.client.OutputService
+path: 71DA25DF1CE89D4BCC4DE9666AD52CB7.gwt.rpc

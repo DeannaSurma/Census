@@ -1,0 +1,2 @@
+serviceClass: com.cs4302.census.client.GreetingService
+path: A2D6DC53AFECDBFC37D6BCE8D2501E96.gwt.rpc

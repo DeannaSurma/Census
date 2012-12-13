@@ -1,9 +1,17 @@
 package com.cs4302.census.shared;
 
-public class Tuple {
+import java.io.Serializable;
+
+import com.googlecode.objectify.annotation.Entity;
+
+@Entity(name="Tuple")
+public class Tuple implements Serializable {
+    private static final long serialVersionUID = 1L;
 
 	String name;
 	Long id;
+	
+	public Tuple(){}
 	  
 	public Tuple(String data){
 		super();

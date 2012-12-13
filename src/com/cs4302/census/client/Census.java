@@ -1,9 +1,5 @@
 package com.cs4302.census.client;
 
-import com.cs4302.census.client.service.InputService;
-import com.cs4302.census.client.service.InputServiceAsync;
-import com.cs4302.census.client.service.OutputService;
-import com.cs4302.census.client.service.OutputServiceAsync;
 import com.cs4302.census.shared.profiles.StateProfile;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
@@ -28,6 +24,7 @@ public class Census implements EntryPoint {
    */
   private final InputServiceAsync inputService = GWT.create(InputService.class);
   private final OutputServiceAsync outputService = GWT.create(OutputService.class);
+  private final GreetingServiceAsync greetingService = GWT.create(GreetingService.class);
 
   /**
    * This is the entry point method.
@@ -39,45 +36,58 @@ public class Census implements EntryPoint {
 	  // state = false -> Ken - uploading info
 	  if (state){
 		  // use outputService
-		  final Button sendButton = new Button("Send");
-	      final TextBox nameField = new TextBox();
+		  final TextBox nameField = new TextBox();
 	      nameField.setText("GWT User");
 		  
 	  }
 	  else{
+		  greetingService.greetServer("hi",
+					new AsyncCallback<String>() {
+						public void onFailure(Throwable caught) {
+							// Show the RPC error message to the user
+							System.out.println("FAIL");
+						}
+
+						public void onSuccess(String result) {
+							System.out.println("Success");
+						}
+					});
+		  
 		  inputService.insertPlace(1l,"HI",2, 3,4,5,6, 1l,"HI",2, 3,4,5,6, 1l,"HI",2, 3,4,5,6, new AsyncCallback<Void>() {
 			   @Override  
 			   public void onFailure(Throwable caught) {
-		            System.out.println("FAILED");
+		            System.out.println("FAILED2");
 		        }
 
 				@Override
 				public void onSuccess(Void result) {
-					 System.out.println("SUCCESS");
+					 System.out.println("SUCCESS2");
 					// TODO Auto-generated method stub
-					outputService.getStateProfile(1l, new AsyncCallback<StateProfile>() {
-
-						@Override
-						public void onFailure(Throwable caught) {
-							// TODO Auto-generated method stub
-							
-						}
-
-						@Override
-						public void onSuccess(StateProfile result) {
-							System.out.println(result.toString());
-							// TODO Auto-generated method stub
-							
-						}
-						
-						
-					});
+					
 				}
 		    });
 		  // read from file, iterate, use inputService
 		  // inputService.insertPlace(stateID, stateName, state70, state80, state90, state00, state10, countyID, countyName, county70, county80, county90, county00, county10, placeID, placeName, place70, place80, place90, place00, place10, new Async...)
 	  }
 	  
+	  
+//	  outputService.getStateProfile(1l, new AsyncCallback<StateProfile>() {
+//
+//			@Override
+//			public void onFailure(Throwable caught) {
+//				// TODO Auto-generated method stub
+//				
+//			}
+//
+//			@Override
+//			public void onSuccess(StateProfile result) {
+//				System.out.println(result.toString());
+//				// TODO Auto-generated method stub
+//				
+//			}
+//			
+//			
+//		});
 	  
 
   

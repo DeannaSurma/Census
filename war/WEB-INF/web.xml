@@ -8,12 +8,12 @@
   <!-- Servlets -->
   <servlet>
     <servlet-name>inputServlet</servlet-name>
-    <servlet-class>com.cs4302.census.server.service.impl.InputServiceImpl</servlet-class>
+    <servlet-class>com.cs4302.census.server.InputServiceImpl</servlet-class>
   </servlet>
   
   <servlet>
     <servlet-name>outputServlet</servlet-name>
-    <servlet-class>com.cs4302.census.server.service.impl.OutputServiceImpl</servlet-class>
+    <servlet-class>com.cs4302.census.server.OutputServiceImpl</servlet-class>
   </servlet>
   
   <servlet-mapping>
