@@ -19,7 +19,7 @@ public class StateDAO {
   }
   
   public State getState(Long stateFP){
-    State state;
+	State state;
     try{
     	state = ofy.get(State.class, stateFP);
     }
@@ -29,16 +29,18 @@ public class StateDAO {
     return state;
   }
 
-  public State addState(Long stateFP, Long countyFP, EntityInfo stateInfo){ 
-	State state = getState(stateFP);
-    if (state == null){
-      state = new State(stateFP, stateInfo);
-    }
-    state.addCountyFP(countyFP);
-    ofy.put(state);
-    return state;
-  }
-  
+  public boolean addState(Long stateFP, Long countyFP, EntityInfo stateInfo, boolean newCounty, String countyName){ 
+	  State state = getState(stateFP);
+	    boolean status = false;
+		if (state == null){
+			state = new State(stateFP, stateInfo);
+	      status = true;
+	    }
+		state.addCountyFP(countyFP, countyName, newCounty);
+	    ofy.put(state);
+	    return status;
+	  }
+    
   public List<Tuple> getCountyList(Long stateFP){
 	    State state = this.getState(stateFP);
 	    List<String> countyNames = state.getCountyNames();
@@ -48,7 +50,5 @@ public class StateDAO {
 	    }
 	    return countyTuples;
   }
-  
-  
   
 }

@@ -27,9 +27,10 @@ public class State implements Serializable {
       this.countyNames = new ArrayList<String>();
     }
     
-    public void addCountyFP(Long countyFP){
+    public void addCountyFP(Long countyFP, String countyName, boolean newCounty){
+      if (!newCounty) return;
       this.countyFPs.add(countyFP);
-      this.countyNames.add(stateFP.toString().concat("-".concat(countyFP.toString())));
+      this.countyNames.add(countyFP.toString().concat("-".concat(countyName.toString())));
     }
     
     public long getStateFP() {

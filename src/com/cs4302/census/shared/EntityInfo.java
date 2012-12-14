@@ -33,6 +33,10 @@ public class EntityInfo implements Serializable {
     this.p2010 = p2010;
   }
   
+  public Long getID(){
+	  return id;
+  }
+  
   public String getName(){
 	  return name;
   }

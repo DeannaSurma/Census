@@ -23,5 +23,17 @@ public class CountyProfile implements Serializable {
     this.countyInfo = countyInfo;
     this.placeTuples = placeTuples;
   }
-  
+
+public EntityInfo getStateInfo() {
+	return stateInfo;
+}
+
+public EntityInfo getCountyInfo() {
+	return countyInfo;
+}
+
+public List<Tuple> getPlaceTuples() {
+	return placeTuples;
+}
+
 }

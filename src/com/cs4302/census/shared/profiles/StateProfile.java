@@ -21,5 +21,14 @@ public class StateProfile implements Serializable {
     this.stateInfo = stateInfo;
     this.placeTuples = placeTuples;
   }
+
+public EntityInfo getStateInfo() {
+	return stateInfo;
+}
+
+public List<Tuple> getPlaceTuples() {
+	return placeTuples;
+}
+
   
 }

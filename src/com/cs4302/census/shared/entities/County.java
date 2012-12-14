@@ -31,9 +31,10 @@ public class County implements Serializable {
       this.placeNames = new ArrayList<String>();
     }
     
-    public void addPlaceFP(Long placeFP){
+    public void addPlaceFP(Long placeFP, String placeName, boolean newPlace){
+      if (!newPlace) return;
       this.placeFPs.add(placeFP);
-      this.placeNames.add(stateFP.toString().concat("-".concat(placeFP.toString())));
+      this.placeNames.add(placeFP.toString().concat("-".concat(placeName.toString())));
     }
 
 	public String getCountyID() {

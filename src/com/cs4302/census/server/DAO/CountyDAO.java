@@ -19,26 +19,30 @@ public class CountyDAO {
   }
   
   public County getCounty(Long stateFP, Long countyFP){
+	System.out.println("GET_COUNTY");
 	String countyID = stateFP.toString().concat(countyFP.toString());
-    County county;
+    County county = null;
     try{
     	county = ofy.get(County.class, countyID);
     }
-    catch(Exception e){
-    	county = null;
-    }
+    catch(Exception e){ }
     return county;
   }
 
-  public County addCounty(Long stateFP, Long countyFP, Long placeFP, EntityInfo countyInfo){ 
+  // true if added new county
+  public boolean addCounty(Long stateFP, Long countyFP, Long placeFP, EntityInfo countyInfo, boolean newPlace, String placeName){ 
+	System.out.println("ADD_COUNTY");
 	County county = getCounty(stateFP, countyFP);
-    if (county == null){
+    boolean status = false;
+	if (county == null){
       county = new County(stateFP, countyFP, countyInfo);
+      status = true;
     }
-    county.addPlaceFP(placeFP);
+    county.addPlaceFP(placeFP, placeName, newPlace);
     ofy.put(county);
-    return county;
+    return status;
   }
+  
 	  
   public List<Tuple> getPlaceList(Long stateFP, Long countyFP){
 		 County county = this.getCounty(stateFP, countyFP);

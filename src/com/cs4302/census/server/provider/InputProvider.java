@@ -17,17 +17,18 @@ public class InputProvider {
 	  this.placeDAO = new PlaceDAO();
   }
 
- public void addPlace(long stateFP,  String stateName,  int state70,  int state80,  int state90,  int state00,  int state10,
-		 long countyFP, String countyName, int county70, int county80, int county90, int county00, int county10,
-		 long placeFP,  String placeName,  int place70,  int place80,  int place90,  int place00,  int place10){ 
+ public void addPlace(Long stateFP,  String stateName,  int state70,  int state80,  int state90,  int state00,  int state10,
+		 Long countyFP, String countyName, int county70, int county80, int county90, int county00, int county10,
+		 Long placeFP,  String placeName,  int place70,  int place80,  int place90,  int place00,  int place10){ 
 	 
 	 EntityInfo placeInfo = new EntityInfo(placeName, placeFP, place70, place80, place90, place00, place10);
 	 EntityInfo countyInfo = new EntityInfo(countyName, countyFP, county70, county80, county90, county00,  county10);
 	 EntityInfo stateInfo = new EntityInfo(stateName, stateFP, state70, state80, state90, state00,  state10);
      
-	 placeDAO.addPlace(stateFP, countyFP, placeFP, placeInfo);
-	 countyDAO.addCounty(stateFP, countyFP, placeFP, countyInfo);
-	 stateDAO.addState(stateFP, countyFP, stateInfo);
+	 boolean newPlace = placeDAO.addPlace(stateFP, countyFP, placeFP, placeInfo);
+	 boolean newCounty = countyDAO.addCounty(stateFP, countyFP, placeFP, countyInfo, newPlace, placeName);
+	 boolean newState = stateDAO.addState(stateFP, countyFP, stateInfo, newCounty, countyName);
+	 
  }
   
 }
